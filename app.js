@@ -10,5 +10,7 @@ app.use(express.static('./public'));
 //pass express to function
 functions(app);
 
-app.listen(3000);
+const port = process.env.PORT || 4000;
+
+app.listen(port);
 console.log('You are listening to port 3000');
