@@ -1,0 +1,75 @@
+<!--Modal - Add User-->
+<div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="addUser">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add User</h4>
+      </div>
+      <div class="modal-body">
+        <form id="f-addUsers" method="POST">
+          <div class="form-group">
+            <label for="userId">Employee ID</label>
+            <input type="text" class="form-control" placeholder="Employee Id" name="userId">
+          </div>
+          <div class="form-group">
+            <label for="item-name">First Name</label>
+            <input type="text" class="form-control" placeholder="First Name" name="userFName">
+          </div>
+          <div class="form-group">
+            <label for="item-name">Last Name</label>
+            <input type="text" class="form-control" placeholder="Last Name" name="userLName">
+          </div>
+          <div class="form-group">
+            <label for="department">Department</label>
+            <select class="form-control" name="department">
+              <% for(var i=0; i < deptData.length; i++){ %>
+                <option value="<%= deptData[i]._id %>"><%= deptData[i].deptName %></option>
+              <% } %>
+            </select>
+          </div>
+          <input type="submit" class="btn btn-primary" value="Submit" name="submit" formaction="/addUsers"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal - Edit User-->
+<div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="editUser">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Edit User</h4>
+      </div>
+      <div class="modal-body">
+        <form id="f-editUsers" method="POST">
+          <div class="form-group">
+            <label for="userId">Employee ID</label>
+            <input type="text" class="form-control" placeholder="Employee ID" name="userId">
+          </div>
+          <div class="form-group">
+            <label for="userFName">First Name</label>
+            <input type="text" class="form-control" placeholder="First Name" name="userFName">
+          </div>
+          <div class="form-group">
+            <label for="userLName">Last Name</label>
+            <input type="text" class="form-control" placeholder="Last Name" name="userLName">
+          </div>
+          <div class="form-group">
+            <label for="department">Department</label>
+            <select class="form-control" name="department">
+              <% for(var i=0; i < deptData.length; i++){ %>
+                <option value="<%= deptData[i]._id %>"><%= deptData[i].deptName %></option>
+              <% } %>
+            </select>
+          </div>
+          <input type="hidden" name="oldDepartment">
+          <input type="hidden" name="u">
+          <input type="submit" class="btn btn-primary" value="Submit" name="submit" formaction="/editUsers"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

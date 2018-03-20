@@ -1,0 +1,73 @@
+<% include _inc/header.ejs %>
+
+<div class="headline">
+  <h1>Category</h1>
+</div>
+
+<div class="stocks-container">
+  <div class="cont-button">
+    <a href="/stocks"><button class="btn btn-primary">Stocks</button></a>
+    <button class="btn btn-success pull-right">Export to Excel</button>
+  </div>
+  <div class="cat-container">
+    <div class="col-sm-5 cat-desc">
+      <div class="panel panel-default cat-panel">
+        <div class="panel-heading">Add Category</div>
+        <div class="panel-body">
+          <form id="c-addCategory" method="POST">
+            <div class="form-group">
+              <label for="item-name">Category Code</label>
+              <input type="text" class="form-control" placeholder="Category Code" name="caCode">
+            </div>
+            <div class="form-group">
+              <label for="item-name">Category Name</label>
+              <input type="text" class="form-control" placeholder="Category Name" name="caName">
+            </div>
+            <div class="form-group">
+              <label for="caDescription">Description</label>
+              <textarea class="form-control" placeholder="Description of Item" rows="4" style="resize: none;" name="caDescription"></textarea>
+            </div>
+            <div class="form-group pull-right">
+              <input type="submit" class="btn btn-primary" value="Submit" name="submit" formaction="/addCategory"/>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-7">
+      <table id="category" class="table table-striped" cellspacing="0">
+        <thead>
+          <tr>
+            <th class="cat-name">Code</th>
+            <th class="cat-name">Name</th>
+            <th class="cat-create">Last Update</th>
+            <th class="cat-btn"> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% caData.forEach(function(item){ %>
+          <tr>
+            <td><%= item.caCode %></td>
+            <td><%= item.caName %></td>
+            <td><%= item.lastUpdate %></td>
+            <td>
+              <button class="btn btn-primary btn-xs s_openViewCategory"  data-toggle="modal" data-target="#viewCategory" data-val='{"caCode":"<%= item.caCode %>", "caName":"<%= item.caName %>", "description":"<%= item.caDescription %>", "assets":"<%  item.stock.forEach(function(item2) { %> <tr><td><%= item2.assetId %></td><td><%= item2.itemName %></td></tr> <% })%>"}'>
+                <i class="fas fa-search"></i> View
+              </button>
+              <button class="btn btn-warning btn-xs s_openEditCategory" data-toggle="modal" data-target="#editCategory" data-backdrop="static" data-keyboard="false" data-val='{"u":"<%= item._id %>","caCode":"<%= item.caCode %>", "caName":"<%= item.caName %>", "description":"<%= item.caDescription %>"}'>
+                <i class="fas fa-edit"></i> Edit
+              </button>
+              <a href="/deleteData?u=<%= item._id %>&page=category" class="btn btn-danger btn-xs"><i class="fas fa-times"></i> Remove</a>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <% include modals/m-category.ejs %>
+
+</div>
+
+<% include _inc/footer.ejs %>

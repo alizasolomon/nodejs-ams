@@ -1,0 +1,54 @@
+<% include _inc/header.ejs %>
+
+<div class="headline">
+  <h1>Users</h1>
+</div>
+
+<div class="stocks-container">
+  <div class="cont-button">
+    <button class="btn btn-default" data-toggle="modal" data-target="#addUser" data-backdrop="static" data-keyboard="false">Add Users</button>
+    <a href="/userDepartment"><button class="btn btn-primary">Department</button></a>
+    <button class="btn btn-success pull-right">Export to Excel</button>
+  </div>
+  <div class="cont-table">
+    <table id="tbl_user" class="table table-striped" cellspacing="0">
+      <thead>
+        <tr>
+          <th class="tbl-id">Employee ID</th>
+          <th class="tbl-name">Name</th>
+          <th class="tbl-dept">Department</th>
+          <th class="tbl-stat">Status</th>
+          <th class="tbl-btn"> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% usersData.forEach(function(item){ %>
+        <tr>
+          <td><%= item.userId %></td>
+          <td><%= item.userLName %>, <%= item.userFName %></td>
+          <td><%= item.department.deptName %></td>
+          <td>
+            <% if (item.status === true){ %> Active
+            <% } else { %> Deactivated <% } %></td>
+          <td>
+            <% if (item.status === true){ %>
+            <button class="btn btn-warning btn-xs s_openEditUser" data-toggle="modal" data-target="#editUser" data-backdrop="static" data-keyboard="false" data-val='{"u":"<%= item._id %>","userId":"<%= item.userId %>", "userFName":"<%= item.userFName %>", "userLName":"<%= item.userLName %>", "department":"<%= item.department._id %>"}'>
+              <i class="fas fa-edit"></i> Edit
+            </button>
+             <a href="/statAcc?u=<%= item._id %>&stat=<%= item.status %>" class="btn btn-danger btn-xs"><i class="fas fa-times"></i> Deactivate</a>
+            <% } else { %>
+              <a href="/statAcc?u=<%= item._id %>&stat=<%= item.status %>" class="btn btn-success btn-xs"><i class="fas fa-check"></i> Activate</a>
+            <% } %>
+
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <% include modals/m-users.ejs %>
+
+</div>
+
+<% include _inc/footer.ejs %>

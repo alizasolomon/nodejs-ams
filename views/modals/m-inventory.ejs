@@ -1,0 +1,27 @@
+<!--Modal - Add Quantity-->
+<div class="modal fade" id="addItemQuantity" tabindex="-1" role="dialog" aria-labelledby="addQuantity">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add Quantity<span class="stock-name"></span></h4>
+      </div>
+      <div class="modal-body">
+        <form id="f-addQuantity" method="POST" onsubmit="addItem()">
+          <input type="hidden" name="asset">
+          <div class="form-group">
+            <label for="stock">Stock ID - Stock Name</label>
+            <input type="text" class="form-control" placeholder="Asset Tag" name="stock" readonly>
+          </div>
+          <div class="form-group">
+            <label for="quantity">Quantity to issue</label>
+            <input type="number" class="form-control" placeholder="Quantity" name="quantity" min=1 max=1000000>
+          </div>
+            <input type="hidden" name="totalQuantity">
+            <input type="hidden" name="u">
+            <input type="submit" class="btn btn-primary" value="Submit" name="submit"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

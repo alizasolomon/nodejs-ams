@@ -1,0 +1,73 @@
+<% include _inc/header.ejs %>
+
+<div class="headline">
+  <h1>Department</h1>
+</div>
+
+<div class="stocks-container">
+  <div class="cont-button">
+    <a href="/users"><button class="btn btn-primary">Users</button></a>
+    <button class="btn btn-success pull-right">Export to Excel</button>
+  </div>
+  <div class="cat-container">
+    <div class="col-sm-5 cat-desc">
+      <div class="panel panel-default cat-panel ">
+        <div class="panel-heading">Add Department</div>
+        <div class="panel-body">
+          <form id="c-addDept" method="POST">
+            <div class="form-group">
+              <label for="deptCode">Department Code</label>
+              <input type="text" class="form-control" placeholder="Department Code" name="deptCode">
+            </div>
+            <div class="form-group">
+              <label for="deptName">Department Name</label>
+              <input type="text" class="form-control" placeholder="Department Name" name="deptName">
+            </div>
+            <div class="form-group">
+              <label for="desc">Description</label>
+              <textarea class="form-control" placeholder="Description of Item" rows="4" style="resize: none;" name="deptDescription"></textarea>
+            </div>
+            <div class="form-group pull-right">
+              <input type="submit" class="btn btn-primary" value="Submit" name="submit" formaction="/addDept"/>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-7">
+      <table id="department" class="table table-striped" cellspacing="0">
+        <thead>
+          <tr>
+            <th class="dept-code">Code</th>
+            <th class="dept-name">Name</th>
+            <th class="dept-create">Last Update</th>
+            <th class="dept-btn"> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% deptData.forEach(function(item){ %>
+          <tr>
+            <td><%= item.deptCode %></td>
+            <td><%= item.deptName %></td>
+            <td><%= item.lastUpdate %></td>
+            <td>
+              <button class="btn btn-primary btn-xs s_openViewDept"  data-toggle="modal" data-target="#viewDept" data-val='{"deptCode":"<%= item.deptCode %>", "deptName":"<%= item.deptName %>", "description":"<%= item.deptDescription %>", "deptUsers":"<%  item.users.forEach(function(item2) { %> <tr><td><%= item2.userId %></td><td><%= item2.userLName %>, <%= item2.userFName %></td></tr> <% }) %>"}'>
+                <i class="fas fa-search"></i> View
+              </button>
+              <button class="btn btn-warning btn-xs s_openEditDept" data-toggle="modal" data-target="#editDept" data-backdrop="static" data-keyboard="false" data-val='{"u":"<%= item._id %>","deptCode":"<%= item.deptCode %>", "deptName":"<%= item.deptName %>", "description":"<%= item.deptDescription %>"}'>
+                <i class="fas fa-edit"></i> Edit
+              </button>
+              <a href="/deleteData?u=<%= item._id %>&page=dept" class="btn btn-danger btn-xs"><i class="fas fa-times"></i> Remove</a>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <% include modals/m-department.ejs %>
+
+</div>
+
+<% include _inc/footer.ejs %>

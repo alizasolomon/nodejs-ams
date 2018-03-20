@@ -1,0 +1,46 @@
+<% include _inc/header.ejs %>
+
+<div class="headline">
+  <h1>Transactions</h1>
+</div>
+
+<div class="stocks-container">
+  <div class="cont-button">
+    <a href="/inventory"><button class="btn btn-primary">Add Item to User</button></a>
+    <button class="btn btn-success pull-right">Export to Excel</button>
+  </div>
+  <div class="cont-table">
+    <table id="tbl_transactions" class="table table-striped" cellspacing="0">
+      <thead>
+        <tr>
+          <th class="tbl-id">Transaction ID</th>
+          <th class="tbl-item">User</th>
+          <th class="tbl-item">Department</th>
+          <th class="tbl-name">Item</th>
+          <th class="tbl-quantity">Quantity</th>
+          <th class="tbl-category">Date transferred</th>
+          <th class="tbl-btn"> </th>
+        </tr>
+      </thead>
+      <tbody>
+
+          <% transData.forEach(function(item){ %>
+            <% item.transactions.forEach(function(item2){ %>
+              <tr>
+                <td><%= item.trID %></td>
+                <td><%= item.users.userLName %>, <%= item.users.userFName %></td>
+                <td><%= item.users.department.deptName %></td>
+                <td><%= item2.stock.itemName %></td>
+                <td><%= item2.quantity %></td>
+                <td><%= item.update %></td>
+                <td>asd</td>
+              </tr>
+            <% }) %>
+          <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<% include _inc/footer.ejs %>

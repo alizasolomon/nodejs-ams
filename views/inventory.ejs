@@ -1,0 +1,95 @@
+<% include _inc/header.ejs %>
+
+  <div class="headline">
+    <h1>Inventory</h1>
+  </div>
+
+  <div class="stocks-container">
+    <div class="cont-button">
+      <a href="/transactions"><button class="btn btn-primary">Show History</button></a>
+      <button class="btn btn-success pull-right">Export to Excel</button>
+    </div>
+    <div class="cat-container">
+      <div class="col-sm-5 cat-desc">
+        <div class="panel panel-default cat-panel">
+          <div class="panel-heading">Assign Item to User</div>
+          <div class="panel-body">
+            <form id="" method="POST">
+              <div class="form-group">
+                <label for="user">User</label>
+                <select class="form-control" name="user">
+                <% userData.forEach(function(user){ %>
+                  <% if(user.status != false){ %>
+                    <option value="<%= user._id %>"><%= user.userId %> - <%= user.userLName %>, <%= user.userFName %> (<%= user.department.deptName %>) </option>
+                  <% } %>
+                <% }) %>
+            </select>
+              </div>
+              <div class="form-group">
+                <label for="date">Date</label>
+                <input type="text" class="form-control" placeholder="Date Today - auto" name="dateToday" value="<%= Date() %>" readonly>
+              </div>
+              <hr />
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search Item" name="search" id="SearchCustom" onkeyup="SearchFunction()">
+              </div>
+              <div class="table-form">
+                <table class="table" id="itemForm">
+                  <tr>
+                    <td>Item Code</td>
+                    <td>Item Name</td>
+                    <td>Quantity Issue</td>
+                    <td></td>
+                  </tr>
+                  <tr formCount="0">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+              <div class="form-group pull-right">
+                <input type="submit" class="btn btn-primary" value="Submit" name="submit" formaction="/addInventory" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <div class="inventory-table">
+          <table id="tbl_inventory" class="table table-striped" cellspacing="0">
+            <thead>
+              <tr>
+                <th class="tbl-id">Item Code</th>
+                <th class="tbl-user">Item Name</th>
+                <th class="tbl-category">Category</th>
+                <th class="tbl-quantity">Total Quantity</th>
+                <th class="tbl-btn"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% stockData.forEach(function(item){ %>
+              <% if(item.totalQuantity!='0'){ %>
+                <tr id="<%= item._id %>">
+                  <td><%= item.assetId %></td>
+                  <td><%= item.itemName %></td>
+                  <td><%= item.category.caName %></td>
+                  <td><%= item.total.totalQuantity %></td>
+                  <td>
+                    <button class="btn btn-success btn-xs addInventoryQuantity" onclick="addItem('<%= item._id %>','<%= item.assetId %>','<%= item.itemName %>','<%= item.totalQuantity %>')">
+                      <i class="fas fa-plus"></i> Add
+                    </button>
+                  </td>
+                </tr>
+              <%}%>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <% include modals/m-inventory.ejs %>
+  </div>
+
+  <% include _inc/footer.ejs %>
+  <script>var counter = 0;</script>

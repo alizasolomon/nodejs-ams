@@ -1,0 +1,242 @@
+/* Font Family - Roboto*/
+@font-face {
+    font-family: Roboto;
+    src: url(../fonts/Roboto-Regular.ttf);
+}
+@font-face {
+    font-family: Roboto;
+    src: url(../fonts/Roboto-Light.ttf);
+    font-weight: 200;
+}
+@font-face {
+    font-family: Roboto;
+    src: url(../fonts/Roboto-Medium.ttf);
+    font-weight: 600;
+}
+@font-face {
+    font-family: Roboto;
+    src: url(../fonts/Roboto-Bold.ttf);
+    font-weight: bold;
+}
+
+html, body{
+  height: 100%;
+}
+body{
+  background: #e8e8e8;
+  font-family: Roboto;
+  font-weight: 400;
+}
+a {
+    color: inherit;
+}
+a:hover, a:focus, a:active{
+  color: inherit;
+  text-decoration: none;
+}
+
+/*Header*/
+.navbar{
+  background: #1d2939;
+  border: 0;
+  border-radius: 0;
+}
+.navbar-brand, .navbar-brand:hover, .navbar-brand:focus{
+  color: #fff;
+  font-weight: 600;
+}
+.navbar-nav li a{
+  color: #fff;
+}
+.navbar-nav li a:hover, .navbar-nav li a:focus, .navbar-nav li a:visited{
+  color: #fff;
+  background: transparent;
+}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+  background-color: #101721;
+  border-color: transparent;
+}
+.navbar-nav>li>.dropdown-menu{
+  background: #101721;
+  color: #fff;
+}
+.navbar-nav>li>.dropdown-menu>li:hover{
+  background: #1d2939;
+}
+
+/*Main*/
+main{
+  padding: 0 25px;
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  height: calc(100% - 100px);
+}
+
+/*Main - Sidebar*/
+main > .sidebar{
+  box-sizing: border-box;
+  word-wrap: break-word;
+  padding: 0;
+}
+.nav-side li{
+  list-style: none;
+}
+.nav-custom{
+  margin: 0;
+  padding: 0;
+}
+.nav-side a{
+  text-align: center;
+  padding: 25px 10px;
+  cursor: pointer;
+  display: block;
+}
+.nav-side > .ic{
+  display: block;
+}
+.nav-side li.active, .nav-side.active:hover{
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background: #fff;
+  color: #1d2939;
+}
+.nav-side li:hover{
+  background: #d5d5d5;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.ic > .icon{
+  display: block;
+}
+
+/*Main Container*/
+main > .main-container{
+  box-sizing: border-box;
+  word-wrap: break-word;
+  background: #fff;
+  min-height: 100%;
+  height: auto;
+  padding: 50px;
+}
+.headline{
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 20px;
+}
+
+/*Highlight*/
+.highlight{
+  color: #fff;
+  font-weight: 200;
+  margin: 20px 0;
+  overflow: hidden;
+}
+.hl-stocks{
+  background: #1cb09a;
+  overflow: hidden;
+}
+.hl-uaItems{
+  background: #d9544f;
+  overflow: hidden;
+}
+.hl-users{
+  background: #418bca;
+  overflow: hidden;
+}
+.highlight .hl-details{
+  padding: 10px 20px;
+}
+.highlight .hl-count{
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1;
+}
+.highlight .hl-icon{
+  background: rgba(0,0,0,0.25);
+  text-align: center;
+}
+.hl-icon > i{
+  padding: 10px 0;
+}
+
+/*Quick Links*/
+.ql-cont{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  margin: 30px 0;
+}
+.ql-wrap{
+  width: 150px;
+  text-align: center;
+  margin: 0 20px;
+}
+.ql-icon{
+  padding: 20px;
+}
+.ql-assign{
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+}
+.ql-assign:hover{
+  background: #d1d9e3;
+  color: #1d2939;
+}
+
+/*DataTable*/
+.cont-table{
+  margin: 30px 0;
+}
+.dataTables_length label, .dataTables_filter label{
+  font-weight: 500;
+}
+.dataTables_length select{
+  padding: 2px 5px;
+  margin-left: 10px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+.dataTables_filter input{
+  border: 1px solid rgb(169, 169, 169);
+  padding: 5px;
+  border-radius: 5px;
+}
+table, table.dataTable.no-footer{
+  border: 1px solid #acacac;
+}
+table.dataTable thead th, table.dataTable thead td{
+  border-bottom: 1px solid #cecece;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+  background: 0;
+  border: 0;
+  text-decoration: line-through !important;
+}
+.tbl-id{
+  width: 100px;
+}
+.tbl-name{
+  width: 30%;
+}
+.tbl-btn{
+  width: 250px;
+}
+
+/*Category*/
+.cat-container{
+  margin: 20px 0;
+}
+.cat-desc{
+  padding-left: 0;
+  padding-right: 30px;
+}
+.cat-panel{
+  border: 1px solid #acacac;
+  border-radius: 0;
+}
+.cat-panel > .panel-heading{
+  border-bottom: 1px solid #acacac;
+  font-weight: bold;
+}

@@ -1,0 +1,62 @@
+<% include _inc/header.ejs %>
+
+<div class="headline">
+  <h1>Stocks</h1>
+</div>
+
+<div class="stocks-container">
+  <div class="cont-button">
+    <button class="btn btn-default" data-toggle="modal" data-target="#addStock" data-backdrop="static" data-keyboard="false">New Item</button>
+    <a href="/stocksCategory"><button class="btn btn-primary">Category</button></a>
+    <button class="btn btn-success pull-right">Export to Excel</button>
+  </div>
+  <div class="cont-table">
+    <table id="tbl_stock" class="table table-striped" cellspacing="0">
+      <thead>
+        <tr>
+          <th class="tbl-id">Item Code</th>
+          <th class="tbl-name">Item Name</th>
+          <th class="tbl-quantity">Quantity</th>
+          <th class="tbl-category">Category</th>
+          <th class="tbl-update">Last Update</th>
+          <th class="tbl-btn"> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% stockData.forEach(function(item){ %>
+
+        <tr>
+          <td><%= item.assetId %></td>
+          <td><%= item.itemName %></td>
+          <td>
+            <% if(item.totalQuantity == 0){ %>
+
+            <% } %>
+
+              <%= item.total.totalQuantity %>
+          </td>
+          <td><%= item.category.caName %></td>
+          <td><%= item.lastUpdate  %></td>
+          <td>
+            <button class="btn btn-primary btn-xs s_openViewDetail"  data-toggle="modal" data-target="#viewDetails" data-backdrop="static" data-keyboard="false" data-val='{"assetId":"<%= item.assetId %>", "name":"<%= item.itemName %>", "description":"<%= item.description %>", "category": "<%= item.category.caName %>", "totalquantity": "<%= item.total.totalQuantity %>", "totalIn": "<%= item.total.totalIn %>", "totalOut": "<%= item.total.totalOut %>","quantity": "<%  item.quantity.forEach(function(item2) { %><tr><td><% if(item2.issue == 1){%>In<%} else {%>Out<%}%></td><td><%= item2.itemCount %></td><td><%= item2.dateUpdate %></td></tr><% })%>"}'>
+              <i class="fas fa-search"></i> View
+            </button>
+            <button class="btn btn-success btn-xs s_openAddQuantity" data-toggle="modal" data-target="#addQuantity" data-backdrop="static" data-keyboard="false" data-val='{"val_id":"<%= item._id %>","assetId":"<%= item.assetId %>", "name":"<%= item.itemName %>", "quantity":"0"}'>
+              <i class="fas fa-plus"></i> Quantity
+            </button>
+            <button class="btn btn-warning btn-xs s_openEditStock" data-toggle="modal" data-target="#editStock" data-backdrop="static" data-keyboard="false" data-val='{"u":"<%= item._id %>", "assetId":"<%= item.assetId %>", "name":"<%= item.itemName %>", "description":"<%= item.description %>", "category": "<%= item.category._id %>"}'>
+              <i class="fas fa-edit"></i> Edit
+            </button>
+            <a href="/deleteData?u=<%= item._id %>&cat=<%= item.category._id %>&page=stocks" class="btn btn-danger btn-xs"><i class="fas fa-times"></i> Remove</a>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <% include modals/m-stocks.ejs %>
+
+</div>
+
+<% include _inc/footer.ejs %>

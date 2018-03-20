@@ -1,0 +1,67 @@
+<!--Modal - Edit Category-->
+<div class="modal fade" id="editDept" tabindex="-1" role="dialog" aria-labelledby="editDept">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Edit Department</h4>
+      </div>
+      <div class="modal-body">
+        <form id="f-editStock" method="POST">
+          <div class="form-group">
+            <label for="deptCode">Department Code</label>
+            <input type="text" class="form-control" placeholder="Department Code" name="deptCode" readonly>
+          </div>
+          <div class="form-group">
+            <label for="deptName">Department Name</label>
+            <input type="text" class="form-control" placeholder="Department Name" name="deptName">
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" placeholder="Description of Category" rows="4" style="resize: none;" name="description"></textarea>
+          </div>
+          <input type="hidden" name="u">
+          <input type="submit" class="btn btn-primary" value="Submit" name="submit" formaction="/editDept"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal - View Category-->
+<div class="modal fade" id="viewDept" tabindex="-1" role="dialog" aria-labelledby="viewDept">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <table id="CategoryDetails" class="table table-striped" cellspacing="0">
+            <tr>
+              <td class="dt-label">Department Code</td>
+              <td class="de-code"></td>
+            </tr>
+            <tr>
+              <td class="dt-label">Department Name</td>
+              <td class="de-name"></td>
+            </tr>
+            <tr>
+              <td class="dt-label">Description</td>
+              <td class="de-detail"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="dept-usertbl">
+          <h4 style="text-align: center;">Users under this Department</h4>
+          <table class="table">
+            <thead>
+              <th>User ID</th>
+              <th>User Name</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+{
+  "name": "asset_management_prototype",
+  "version": "1.0.0",
+  "description": "Simple Inventory System using Node.JS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "A.Solomon",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "mocha": "^5.0.1",
+    "mongoose": "^5.0.6",
+    "shortid": "^2.2.8"
+  }
+}

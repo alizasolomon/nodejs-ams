@@ -1,0 +1,156 @@
+<!--Modal - Add Stock-->
+<div class="modal fade" id="addStock" tabindex="-1" role="dialog" aria-labelledby="addStocks">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Add Item</h4>
+        </div>
+        <div class="modal-body">
+          <form id="f-addStock" method="POST">
+            <div class="form-group">
+              <label for="assetId">Item Code</label>
+              <input type="text" class="form-control" placeholder="Asset Tag" name="assetId">
+            </div>
+            <div class="form-group">
+              <label for="itemName">Item Name</label>
+              <input type="text" class="form-control" placeholder="Item Name" name="itemName">
+            </div>
+            <div class="form-group">
+              <label for="desc">Description</label>
+              <textarea class="form-control" placeholder="Description of Item" rows="4" style="resize: none;" name="description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select class="form-control" name="category">
+                <% for(var i=0; i < caData.length; i++){ %>
+                  <option value="<%= caData[i]._id %>"><%= caData[i].caName %></option>
+                <% } %>
+              </select>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Submit" name="submit" formaction="/addStock"/>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal - Edit Stock-->
+<div class="modal fade" id="editStock" tabindex="-1" role="dialog" aria-labelledby="editStocks">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Edit Stocks</h4>
+      </div>
+      <div class="modal-body">
+        <form id="f-editStock" method="POST">
+          <div class="form-group">
+            <label for="assetId">Asset Tag</label>
+            <input type="text" class="form-control" placeholder="Asset ID" name="assetId" readonly>
+          </div>
+          <div class="form-group">
+            <label for="itemName">Name</label>
+            <input type="text" class="form-control" placeholder="Item Name" name="itemName">
+          </div>
+          <div class="form-group">
+            <label for="desc">Description</label>
+            <textarea class="form-control" placeholder="Description of Item" rows="4" style="resize: none;" name="description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select class="form-control" name="category">
+              <% for(var i=0; i < caData.length; i++){ %>
+                <option value="<%= caData[i]._id %>"><%= caData[i].caName %></option>
+              <% } %>
+            </select>
+          </div>
+          <input type="hidden" name="oldCategory">
+          <input type="hidden" name="u">
+          <input type="submit" class="btn btn-primary" value="Submit" name="submit" formaction="/editStock"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal - Add Quantity-->
+<div class="modal fade" id="addQuantity" tabindex="-1" role="dialog" aria-labelledby="addQuantity">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Quantity for Stock <span class="stock-name"></span></h4>
+      </div>
+      <div class="modal-body">
+        <form id="f-addQuantity" method="POST">
+          <input type="hidden" name="asset">
+          <div class="form-group">
+            <label for="assetId">Stock ID</label>
+            <input type="text" class="form-control" placeholder="Asset Tag" name="assetId" readonly>
+          </div>
+          <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" class="form-control" placeholder="Quantity" name="quantity" min=1 max=1000000>
+          </div>
+            <input type="submit" class="btn btn-primary" value="Submit" name="submit" formaction="/addQuantity"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal - View Stock-->
+<div class="modal fade" id="viewDetails" tabindex="-1" role="dialog" aria-labelledby="viewDetails">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <table id="StockDetails" class="table table-striped" cellspacing="0">
+            <tr>
+              <td class="dt-label">Asset ID</td>
+              <td class="dt-id"></td>
+            </tr>
+            <tr>
+              <td class="dt-label">Asset Name</td>
+              <td class="dt-name"></td>
+            </tr>
+            <tr>
+              <td class="dt-label">Asset Details</td>
+              <td class="dt-detail"></td>
+            </tr>
+            <tr>
+              <td class="dt-label">Category</td>
+              <td class="dt-category"></td>
+            </tr>
+            <tr>
+              <td class="dt-label">Total Quantity</td>
+              <td class="dt-quantity"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="st-squantitytbl">
+          <h4 style="text-align: center;">Quantity History</h4>
+          <div class="total">
+            <div class="totalIn">
+              <b>Total In: </b><span></span>
+            </div>
+            <div class="totalOut">
+              <b>Total Out: </b><span></span>
+            </div>
+          </div>
+          <table class="table">
+            <thead>
+              <th>In/Out</th>
+              <th>Quantity</th>
+              <th>Date & Time Added</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
